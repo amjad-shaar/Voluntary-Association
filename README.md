@@ -6,56 +6,63 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+<h2>دليل جلب وتشغيل المشروع من GitHub</h2>
 
-## About Laravel
+<h3>1. قبل البدء</h3>
+<ul>
+  <li>تثبيت Git على جهازك.</li>
+  <li>تثبيت PHP وComposer لمشاريع Laravel.</li>
+  <li>تثبيت Node.js و npm (إن كان المشروع يحتوي على assets).</li>
+  <li>حساب GitHub وصلاحية الوصول للريبو (public أو private).</li>
+</ul>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<h3>2. استنساخ الريبو لأول مرة (Clone)</h3>
+<b>HTTPS:</b>
+<pre>
+git clone https://github.com/USERNAME/REPOSITORY.git
+cd REPOSITORY
+</pre>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<b>SSH:</b>
+<pre>
+git clone git@github.com:USERNAME/REPOSITORY.git
+cd REPOSITORY
+</pre>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<h3>3. تحديث نسخة محلية موجودة (Pull)</h3>
+<pre>
+git pull origin main
+</pre>
 
-## Learning Laravel
+<h3>4. إنشاء فرع جديد</h3>
+<pre>
+git checkout -b feature/my-feature
+git add .
+git commit -m "وصف التغييرات"
+git push -u origin feature/my-feature
+</pre>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<h3>5. بعد جلب الكود — تشغيل مشروع Laravel</h3>
+<ol>
+  <li>نسخ ملف البيئة: <code>cp .env.example .env</code></li>
+  <li>تثبيت حزم PHP: <code>composer install</code></li>
+  <li>تثبيت حزم JS: <code>npm install &amp;&amp; npm run dev</code></li>
+  <li>توليد مفتاح التطبيق: <code>php artisan key:generate</code></li>
+  <li>تحديث قاعدة البيانات: إعداد .env ثم <code>php artisan migrate --seed</code></li>
+  <li>ربط مجلد التخزين: <code>php artisan storage:link</code></li>
+  <li>تشغيل السيرفر: <code>php artisan serve</code></li>
+</ol>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<h3>6. نصائح أمان</h3>
+<ul>
+  <li>لا ترفع ملفات حساسة (.env) إلى GitHub.</li>
+  <li>استخدم SSH للراحة.</li>
+  <li>قبل <code>git push</code> نفذ <code>git pull --rebase origin branch</code> لتجنب merge commits غير مرغوب فيها.</li>
+</ul>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<h3>7. أوامر سريعة</h3>
+<ul>
+  <li>استنساخ: <code>git clone git@github.com:me/voluntary-association.git</code></li>
+  <li>تحديث الفرع الرئيسي: <code>git checkout main &amp;&amp; git pull origin main</code></li>
+  <li>رفع تغييراتك: <code>git add . &amp;&amp; git commit -m "وصف" &amp;&amp; git push origin feature/xyz</code></li>
+</ul>
