@@ -1,0 +1,9 @@
+########   هذه فقط ملاحظات عن الموقع   ######
+
+1- اعمل Factory للجداول التالية 
+    - admins
+    - roles [super_admin, organizer]
+    - model_has_roles
+
+2- اعمل softdelete للجداول التالية
+    - campaigns

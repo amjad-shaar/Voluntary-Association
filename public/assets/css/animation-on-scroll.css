@@ -1,0 +1,121 @@
+*[data-sos]{
+    opacity: 0;
+    transition: all .2s;
+    animation-delay: calc(var(--order) * 0.2s)!important;
+}
+.sos-top{
+    animation: slideTop .6s ease-in-out both;
+}
+.sos-bottom{
+    animation: slideBottom .6s ease-in-out both;
+}
+.sos-left{
+    animation: slideLeft .6s ease-in-out both;
+}
+.sos-right{
+    animation: slideRight .6s ease-in-out both;
+}
+.sos-zoom-in{
+    animation: slideZoomIn .6s ease-in-out both;
+}
+.sos-zoom-out{
+    animation: slideZoomOut .6s ease-in-out both;
+}
+.sos-blur{
+    animation: slideBlur .6s ease-in-out both;
+}
+.sos-rotateZ{
+    animation: slideRotateZ .6s ease-in-out both;
+}
+@keyframes slideRotateZ {
+    from {
+    transform: rotateZ(25deg);
+    opacity: 0;
+    }
+    to {
+    transform: rotateZ(0);
+    opacity: 1;
+
+    }
+}
+@keyframes slideTop {
+    from {
+    transform: translateY(-100px);
+    opacity: 0;
+    }
+    to {
+    transform: translateY(0);
+    opacity: 1;
+
+    }
+}
+@keyframes slideBottom {
+    from {
+    transform: translateY(100px);
+    opacity: 0;
+    }
+    to {
+    transform: translateY(0);
+    opacity: 1;
+
+    }
+}
+@keyframes slideLeft {
+    from {
+    transform: translateX(300px);
+    opacity: 0;
+    }
+    to {
+    transform: translateX(0);
+    opacity: 1;
+
+    }
+}
+@keyframes slideRight {
+    from {
+    transform: translateX(-300px);
+    opacity: 0;
+    }
+    to {
+    transform: translateX(0);
+    opacity: 1;
+
+    }
+}
+
+@keyframes slideZoomIn {
+    from {
+    transform: scale(.5);
+    opacity: 0;
+    filter: blur(0.5px);
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0px);
+
+    }
+}
+@keyframes slideZoomOut {
+    from {
+    transform: scale(1.5);
+    opacity: 0;
+    filter: blur(0.5px);
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0px);
+
+    }
+}
+@keyframes slideBlur {
+    from {
+        opacity: 0;
+        filter: blur(1.5px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
