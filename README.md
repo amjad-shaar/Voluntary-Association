@@ -66,3 +66,59 @@ git push -u origin feature/my-feature
   <li>تحديث الفرع الرئيسي: <code>git checkout main &amp;&amp; git pull origin main</code></li>
   <li>رفع تغييراتك: <code>git add . &amp;&amp; git commit -m "وصف" &amp;&amp; git push origin feature/xyz</code></li>
 </ul>
+
+<h2>شرح مبسط لمشروع إدارة الحملات التطوعية</h2>
+
+<h3>1️⃣ فكرة المشروع</h3>
+<p>نظام ويب لإدارة الحملات التطوعية، يتيح للمؤسسات:</p>
+<ul>
+  <li>إنشاء الحملات التطوعية في مجالات مختلفة (نظافة، تعليم، مساعدات).</li>
+  <li>تسجيل المتطوعين وإدارتهم.</li>
+  <li>توزيع المتطوعين على المهام.</li>
+  <li>متابعة تقارير المتطوعين لكل مهمة.</li>
+  <li>إدارة الصلاحيات بين أدوار مختلفة: <b>مدير، منظم حملة، متطوع</b>.</li>
+</ul>
+
+<h3>2️⃣ الأدوار والصلاحيات</h3>
+<ul>
+  <li><b>Admin (مدير الموقع)</b>: إدارة المستخدمين، الحملات، المهام، والتقارير. تعيين منظمين.</li>
+  <li><b>Organizer (منظم حملة)</b>: إنشاء وتعديل الحملات والمهام، متابعة تقارير المتطوعين.</li>
+  <li><b>Volunteer (متطوع)</b>: تصفح الحملات والمهام، الانضمام، ورفع التقارير.</li>
+</ul>
+<p>الصلاحيات يتم التحكم بها باستخدام <b>Policies/Gates</b> أو مكتبة <b>Spatie Permission</b>.</p>
+
+<h3>3️⃣ الهيكلية العامة للموديلات</h3>
+<ul>
+  <li><b>User</b>: يمثل المستخدمين. علاقات: <code>tasks()</code>, <code>reports()</code>, <code>campaigns()</code>.</li>
+  <li><b>Campaign</b>: يمثل الحملات التطوعية. علاقات: <code>tasks()</code>, <code>volunteers()</code>, <code>owner()</code>, <code>organizer()</code>.</li>
+  <li><b>Task</b>: يمثل المهام داخل كل حملة. علاقات: <code>campaign()</code>, <code>volunteers()</code>, <code>reports()</code>.</li>
+  <li><b>TaskUser</b>: جدول وسيط بين User و Task لتخزين حالة المتطوع في المهمة.</li>
+  <li><b>Report</b>: يمثل تقارير المتطوعين. علاقات: <code>task()</code>, <code>user()</code>.</li>
+</ul>
+
+<h3>4️⃣ مسارات المشروع (Routes)</h3>
+<ul>
+  <li><b>مسارات الضيوف:</b> login، register.</li>
+  <li><b>مسارات المتطوعين:</b> profile، join-task/{id}، add.report/{id}.</li>
+  <li><b>مسارات الحملات والمهام:</b> campaigns، campaigns/{id}، tasks/{id}.</li>
+  <li><b>مسارات لوحة تحكم Admin:</b> dashboard/، dashboard/users، dashboard/campaigns، dashboard/tasks.</li>
+</ul>
+
+<h3>5️⃣ طريقة عمل التطبيق</h3>
+<ol>
+  <li>المستخدم يزور الموقع كضيف أو مسجل.</li>
+  <li>إنشاء حملة من قبل المسؤول أو المنظم.</li>
+  <li>إضافة المهام للحملة بواسطة المنظم.</li>
+  <li>انضمام المتطوعين للمهام مع قيود على العدد والحالة.</li>
+  <li>رفع ومراجعة التقارير بعد انتهاء المهمة.</li>
+  <li>لوحة Admin تعرض إحصائيات: عدد المستخدمين، الحملات، المهام، والتقارير، وأحدث المستخدمين والحملات.</li>
+</ol>
+
+<h3>6️⃣ ملاحظات تقنية</h3>
+<ul>
+  <li>استخدام <b>Blade Templates</b> لجميع الواجهات.</li>
+  <li>التحقق من المدخلات باستخدام <b>Form Requests</b>.</li>
+  <li>التحكم بالصلاحيات باستخدام <b>Policies/Gates</b> أو <b>Spatie Permission</b>.</li>
+  <li>Pivot table <b>TaskUser</b> لتتبع حالة كل متطوع في المهمة.</li>
+  <li>استخدام <b>hasManyDeep</b> للوصول لجميع المتطوعين في كل المهام الخاصة بالحملة.</li>
+</ul>
